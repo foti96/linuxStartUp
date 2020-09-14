@@ -25,4 +25,5 @@ chmod +x /usr/local/bin/docker-compose
 curl -L https://download.jetbrains.com/product?code=tb&latest&distribution=linux --output toolbox.tar.gz
 tar -xzf toolbox.tar.gz -C /opt
 
+ssh-keygen
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
