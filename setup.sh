@@ -2,7 +2,6 @@ apt update
 apt upgrade
 apt install tilix git zsh curl -y
 snap install --classic code
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 apt-get install \
     apt-transport-https \
     ca-certificates \
@@ -33,6 +32,6 @@ TOOLBOX_URL=$(curl --silent 'https://data.services.jetbrains.com//products/relea
 
 install -d ${HOME}/bin
 curl -sL ${TOOLBOX_URL} | tar xvz --directory=${HOME}/bin --strip-components=1
-
 # intial setup
 $(jetbrains-toolbox)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
