@@ -26,4 +26,13 @@ curl -L https://download.jetbrains.com/product?code=tb&latest&distribution=linux
 tar -xzf toolbox.tar.gz -C /opt
 
 ssh-keygen
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+cat ~/.ssh/id_rsa.pub
+
+while true; do
+    read -p "Install ZSH?" yn
+    case $yn in
+        [Yy]* ) sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
