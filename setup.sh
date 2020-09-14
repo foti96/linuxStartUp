@@ -19,7 +19,7 @@ usermod -aG docker $USER
 curl -L "https://github.com/docker/compose/releases/download/1.27.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-curl -fsSL https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.18.7455.tar.gz
-sudo tar -xzf jetbrains-toolbox-1.13.4801.tar.gz -C /opt
+https://download.jetbrains.com/product?code=tb&latest&distribution=linux --output toolbox.tar.gz
+sudo tar -xzf toolbox.tar.gz -C /opt
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
