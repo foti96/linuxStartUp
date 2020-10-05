@@ -1,6 +1,10 @@
+echo Username:
+
+read userName
+
 apt update -y
 apt upgrade -y
-apt install tilix git zsh curl gnome-tweaks gnome-shell-extensions chrome-gnome-shell -y
+apt install tilix git zsh curl gnome-tweaks gnome-shell-extensions chrome-gnome-shell ngnix -y
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt install ./google-chrome-stable_current_amd64.deb
 snap install --classic code
@@ -18,15 +22,17 @@ add-apt-repository \
    stable"
 apt-get update -y
 apt-get install docker-ce docker-ce-cli containerd.io -y
-usermod -aG docker $USER 
+usermod -aG docker $userName
+usermod -aG www-data $userName
 curl -L "https://github.com/docker/compose/releases/download/1.27.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 curl -L "https://download.jetbrains.com/product?code=tb&latest&distribution=linux" --output toolbox.tar.gz
 tar -xzf toolbox.tar.gz -C /opt
-mv jetbrains-toolbox-* jetbrains-toolbox
+mv /opt/jetbrains-toolbox-* /opt/jetbrains-toolbox
 /opt/jetbrains-toolbox/jetbrains-toolbox 
 
+sudo su $userName
 ssh-keygen
 cat ~/.ssh/id_rsa.pub
 
