@@ -4,7 +4,7 @@ read userName
 
 apt update -y
 apt upgrade -y
-apt install tilix git zsh curl gnome-tweaks gnome-shell-extensions chrome-gnome-shell ngnix -y
+apt install tilix git zsh curl gnome-tweaks gnome-shell-extensions chrome-gnome-shell nginx -y
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt install ./google-chrome-stable_current_amd64.deb
 snap install --classic code
@@ -32,14 +32,14 @@ tar -xzf toolbox.tar.gz -C /opt
 mv /opt/jetbrains-toolbox-* /opt/jetbrains-toolbox
 /opt/jetbrains-toolbox/jetbrains-toolbox 
 
-sudo su $userName
-ssh-keygen
-cat ~/.ssh/id_rsa.pub
+
+sudo su -c ssh-keygen $userName
+sudo su -c cat ~/.ssh/id_rsa.pub $username
 
 while true; do
     read -p "Install ZSH?" yn
     case $yn in
-        [Yy]* ) sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" break;;
+        [Yy]* ) sudo -u $username sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
