@@ -34,12 +34,12 @@ mv /opt/jetbrains-toolbox-* /opt/jetbrains-toolbox
 
 
 sudo su -c ssh-keygen $userName
-sudo su -c cat ~/.ssh/id_rsa.pub $username
+sudo su -c cat ~/.ssh/id_rsa.pub $userName
 
 while true; do
     read -p "Install ZSH?" yn
     case $yn in
-        [Yy]* ) sudo -u $username sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" break;;
+        [Yy]* ) sudo -l -U $userName sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
