@@ -2,12 +2,15 @@ echo Username:
 
 read userName
 
+mkdir tmp
+
 apt update -y
 apt upgrade -y
-apt install tilix git zsh curl gnome-tweaks gnome-shell-extensions chrome-gnome-shell nginx -y
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt install ./google-chrome-stable_current_amd64.deb
-snap install --classic code
+apt install tilix git zsh curl gnome-tweaks gnome-shell-extensions chrome-gnome-shell nginx flatpak snapd pulseaudio -y
+wget --directory-prefix=/tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt install ./tmp/google-chrome-stable_current_amd64.deb
+snap install --classic code slack google-cloud-sdk flutter
+snap install snap-store spotify teams postman obs-studio vlc
 
 apt-get install \
     apt-transport-https \
@@ -37,10 +40,19 @@ sudo su -c ssh-keygen $userName
 sudo su -c cat ~/.ssh/id_rsa.pub $userName
 
 while true; do
+    read -p "Install NVM?" yn
+    case $yn in
+        [Yy]* ) curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o ./tmp/install_nvm.sh | bash ./tmp/install_nvm.sh break;;
+        [Nn]* ) exit;;
+        *) echo "Please select an Option? Yes or No.";;
+    esac
+done || exit 1
+
+while true; do
     read -p "Install ZSH?" yn
     case $yn in
         [Yy]* ) sudo -l -U $userName sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" break;;
         [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+        *) echo "Please select an Option? Yes or No.";;
     esac
-done
+done || exit 1
